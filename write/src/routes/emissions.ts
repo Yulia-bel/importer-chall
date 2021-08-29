@@ -19,7 +19,7 @@ router.post('/', upload.single('emissions'), async (req, res) => {
 
 	let stream = fs.createReadStream(csvFile.path)
 
-	let csvStream = csv.parse({ headers: headersArray })
+	let csvStream = csv.parse({ headers: headersArray, renameHeaders: true })
 		.on("data", function (data) {
 			try {
 				Emissions.create(data)
@@ -32,7 +32,7 @@ router.post('/', upload.single('emissions'), async (req, res) => {
 		})
 	stream.pipe(csvStream)
 
-	res.send('Sucess')
+	res.send('Success')
 
 })
 
