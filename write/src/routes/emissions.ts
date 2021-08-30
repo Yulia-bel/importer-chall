@@ -15,24 +15,28 @@ router.post('/', upload.single('emissions'), async (req, res) => {
 
 	await Emissions.deleteMany({})
 
-	const csvFile: any = req.file
+	try {
+		const csvFile: any = req.file
 
-	let stream = fs.createReadStream(csvFile.path)
+		let stream = fs.createReadStream(csvFile.path)
 
-	let csvStream = csv.parse({ headers: headersArray, renameHeaders: true })
-		.on("data", function (data) {
-			try {
-				Emissions.create(data)
-			} catch (err) {
-				console.error(err)
-			}
-		})
-		.on("end", function () {
-			console.log('End of Stream')
-		})
-	stream.pipe(csvStream)
+		let csvStream = csv.parse({ headers: headersArray, renameHeaders: true })
+			.on("data", function (data) {
+				try {
+					Emissions.create(data)
+				} catch (err) {
+					console.error(err)
+				}
+			})
+			.on("end", function () {
+				console.log('End of Stream')
+			})
+		stream.pipe(csvStream)
 
-	res.send('Success')
+		res.json({ successMessage: 'File saved' })
+	} catch (error) {
+		res.json({ errorMessage: error })
+	}
 
 })
 
