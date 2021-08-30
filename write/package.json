@@ -9,7 +9,7 @@
     "test": "mocha 'dist/test' --timeout 10000"
   },
   "keywords": [],
-  "author": "",
+  "author": "Yulia Belyakova",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
