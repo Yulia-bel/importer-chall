@@ -509,4 +509,6 @@ export const EmissionsSchema = new mongoose.Schema({
 	}
 })
 
-export const Emissions = mongoose.model('Emissions', EmissionsSchema);
+EmissionsSchema.index({ country: 'text', sector: 'text', parentSector: 'text' })
+
+export const Emissions = mongoose.model('Emissions', EmissionsSchema)
