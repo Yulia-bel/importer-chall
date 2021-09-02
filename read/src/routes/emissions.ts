@@ -1,34 +1,50 @@
-import express from 'express'
+import { Router, Response, Request } from 'express'
 
 import { Emissions } from '../models/Emissions'
 
-const router = express.Router()
+const router = Router()
 
 
 
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
 
 	try {
-		if (req.query.search) {
-			let search = req.query.search.toString()
-			let emissions = await Emissions.find({ $text: { $search: search } })
-			res.json(emissions)
-		} else {
-			let filters: { country?: any, sector?: any, parentSector?: any } = {}
 
-			req.query.country ? filters.country = req.query.country : filters = filters
-			req.query.sector ? filters.sector = req.query.sector : filters = filters
-			req.query.parentSector ? filters.parentSector = req.query.parentSector : filters = filters
+		const filters: { country?: string, sector?: string, parentSector?: string, year?: any } = {}
 
-
-			let emissions = await Emissions.find(filters)
-			res.json(emissions)
+		if (typeof req.query.country === 'string') {
+			filters.country = req.query.country
 		}
+
+		if (typeof req.query.sector === 'string') {
+			filters.sector = req.query.sector
+		}
+
+		if (typeof req.query.parentSector === 'string') {
+			filters.parentSector = req.query.parentSector
+		}
+
+		if (typeof req.query.year === 'string') {
+			filters.year = req.query.year
+		}
+
+		if (Array.isArray(req.query.year)) {
+			filters.year = { $in: req.query.year }
+		}
+
+		const emissions = await Emissions.find(filters)
+
+		console.log(filters)
+
+		res.json(emissions)
+
 
 	} catch (error) {
 		res.json({ errorMessage: error })
 	}
 
 })
+
+
 
 export { router }
