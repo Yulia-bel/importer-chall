@@ -4,7 +4,7 @@ let should = chai.should()
 
 import dotenv from 'dotenv'
 
-dotenv.config()
+dotenv.config({ path: __dirname + '../../env' })
 
 chai.use(chaiHttp)
 
@@ -14,7 +14,7 @@ describe('Emissions', () => {
 		it('it should save emissions.csv to database', (done) => {
 
 			let emissions = __dirname + '/../../data/emissions.csv'
-			chai.request('http://localhost:3000')
+			chai.request(process.env.URL + ':' + process.env.PORT)
 				.post('/emissions')
 				.attach('emissions', emissions)
 				.end((err, res) => {
