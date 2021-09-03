@@ -42,7 +42,7 @@ Steps to run project in docker:
 3. Run following command to build, starts and attach to containers for a service:
 
 ``` 
-docker-compose up
+docker-compose up -d
 ```
 
 ## Importing to Database with test
