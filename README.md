@@ -22,7 +22,7 @@ Project is using Node.js with Typescript and Express framework, datastorage is a
 │   └── src         
 |       ├── database
 |       ├── models
-|       ├── roots
+|       ├── routes
 |       ├── helpers
 |       ├── test
 |       └── app.ts
