@@ -2,13 +2,19 @@ version: '3.8'
 services:
   read-api:
     container_name: docker-read
-    build: ./read
+    environment:
+      MONGO_ADDRESS: mongodb://db:27017/emissions
+      PORT: 4000
+    build: read/
     ports:
       - '4000:4000'
     external_links:
       - mongo
   write-api:
     container_name: docker-write
+    environment:
+      MONGO_ADDRESS: mongodb://db:27017/emissions
+      PORT: 3000
     build: write/
     ports:
       - '3000:3000'
