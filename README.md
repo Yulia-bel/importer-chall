@@ -33,52 +33,42 @@ Both microservices have similar folder structure - source typescript code is sto
 
 'helpers/' folder in 'write/src' contains small helper services for the import endpoint
 
-## Getting started 
+## Getting started and Importing to Database with test
 
 Steps to run project in docker:
 
 1. Clone repository
-2. Set environment varuables (APP_URL, PORT, MONGO_ADDRESS). Variables in .env.example are set for localhost in accordance with ports indicated in docker-compose file
-3. Run following command to build, starts and attach to containers for a service:
-
-``` 
-docker-compose up -d
-```
-
-## Importing to Database with test
-
-Import of the .csv file can be done through the following endpoint:
-```
-POST /emissions
-```
-
-To make initial import easier it can be done through a test written with Mocha and Chai libraries:
-
-In write/ directory:
-
-1. installing dependencies:
-```
-npm install
-```
-
-2. compling typescript:
-```
-tsc
-```
-
-3. running test:
+2. Run the command to execute go.sh bash script:
 
 ```
-npm run test
+sh go.sh
 ```
+
+The go.sh contains two commands which will run one after another:
+
+*docker-compose up -d*  - to build and start container
+
+*docker run --network emissions_default --name write-api-test --rm --env API_URL=docker-write --env PORT=3000 emissions_write-api npm run test*  - to create and remove after - a container to run the 'write-api' test and import csv to database
+
 
 expected output:
 
 ```
+Creating network "emissions_default" with the default driver
+Creating docker-read  ... done
+Creating mongo        ... done
+Creating docker-write ... done
+
+> write@1.0.0 test
+> mocha 'dist/test' --timeout 10000000
+
+docker-write:3000
+
+
   Emissions
     /POST emissions
-http://localhost:3000
-      ✔ it should save emissions.csv to database (115775ms)
+null
+      ✔ it should save emissions.csv to database (108137ms)
 
 
   1 passing (2m)
