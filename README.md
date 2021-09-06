@@ -26,7 +26,8 @@ Project is using Node.js with Typescript and Express framework, datastorage is a
 |       ├── helpers
 |       ├── test
 |       └── app.ts
-└── docker-compose.yml
+├── docker-compose.yml
+└── go.sh
 ```
 
 Both microservices have similar folder structure - source typescript code is stored in folder src, javascript code will be compiled into folder dist/ of the same level. 
@@ -46,7 +47,7 @@ sh go.sh
 
 The go.sh contains two commands which will run one after another:
 
-*docker-compose up -d*  - to build and start container
+*docker-compose up -d*  - to build and start containers
 
 *docker run --network emissions_default --name write-api-test --rm --env API_URL=docker-write --env PORT=3000 emissions_write-api npm run test*  - to create and remove after - a container to run the 'write-api' test and import csv to database
 
@@ -72,6 +73,15 @@ null
 
 
   1 passing (2m)
+```
+## Write endpoint
+
+POST /emissions
+
+body file param:
+
+```
+emissions         .csv file     required
 ```
 
 
