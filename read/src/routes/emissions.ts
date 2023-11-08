@@ -6,7 +6,7 @@ const router = Router()
 
 
 
-router.get('/read', async (req: Request, res: Response) => {
+router.get('/read-emissions', async (req: Request, res: Response) => {
 
 	try {
 
