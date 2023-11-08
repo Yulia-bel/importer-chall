@@ -6,7 +6,7 @@ const router = Router()
 
 
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/read', async (req: Request, res: Response) => {
 
 	try {
 
