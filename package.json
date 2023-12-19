@@ -1,0 +1,35 @@
+{
+  "name": "importer-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start:read": "node dist/read/app.js",
+    "start:write": "node dist/write/app.js",
+    "build:read": "tsc --project read/tsconfig.read.json",
+    "build:write": "tsc --project write/tsconfig.write.json",
+    "test:read": "mocha 'dist/read/test' --timeout 10000000",
+    "test:write": "mocha 'dist/write/test' --timeout 10000000"
+  },
+  "author": "Yulia Belyakova",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fast-csv": "^4.3.6",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/express": "^4.17.21",
+    "@types/mocha": "^10.0.6",
+    "@types/multer": "^1.4.11",
+    "@types/node": "^20.10.5",
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "eslint": "^8.56.0",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
