@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "npm run start:read & npm run start:write",
     "start:read": "node dist/read/app.js",
     "start:write": "node dist/write/app.js",
     "build:read": "tsc --project read/tsconfig.read.json",
