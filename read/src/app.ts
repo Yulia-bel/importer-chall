@@ -11,4 +11,4 @@ const app = express()
 
 app.use('/emissions', emissionRoute)
 
-app.listen(process.env.PORT, () => console.log('Read is running'))
+app.listen(process.env.READ_PORT, () => console.log('Read is running'))

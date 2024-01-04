@@ -11,5 +11,5 @@ const app = express()
 
 app.use('/emissions', emissionRoute)
 
-app.listen(process.env.PORT, () => console.log('Write is running'))
+app.listen(process.env.WRITE_PORT, () => console.log('Write is running'))
 
