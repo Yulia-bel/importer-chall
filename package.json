@@ -1,15 +1,11 @@
 {
   "name": "importer-challenge",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run start:read & npm run start:write",
-    "start:read": "node dist/read/app.js",
-    "start:write": "node dist/write/app.js",
-    "build:read": "tsc --project read/tsconfig.read.json",
-    "build:write": "tsc --project write/tsconfig.write.json",
-    "test:read": "mocha 'dist/read/test' --timeout 10000000",
-    "test:write": "mocha 'dist/write/test' --timeout 10000000"
+    "start": "node dist/app.js",
+    "build": "tsc --project tsconfig.service.json",
+    "test": "mocha 'dist/test' --timeout 10000000"
   },
   "author": "Yulia Belyakova",
   "license": "ISC",
